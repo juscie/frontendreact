@@ -18,6 +18,20 @@ module.exports = {
         use: {
           loader: 'babel-loader',
         }
+      },
+      {  //resumo: da regra(rules), toda vez que precisar de um arquivo js que não estiver na pasta node_modules, converte ele usando(use) o babel-loader
+        test: /\.css$/, //primeira própriedade obrigatória (test:), usar expresões regulares
+        exclude: /node_modules/, //não converter, é obrigação das bibliotecas fazerem isso
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+        ]
+      },
+      {
+        test: /.*\.(gif|png|jpe?g)$/i,
+        use: {
+          loader: 'file-loader',
+        }
       }
     ]
   }
