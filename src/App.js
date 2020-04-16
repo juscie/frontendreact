@@ -20,13 +20,18 @@ function App() {
     })
   }, []);
 
-  function handleAddProject() {
-    //adicionar projeto ao array de projects com "push"
-    //projects.push(`Novo projeto ${Date.now()}`);
+  //POST, adicionar um novo projeto
+  async function handleAddProject() {
 
-    //adicionar o conceito de imutabilidade, recriar a varial com o seu contéudo e aicionar o novo
-    setProjects([...projects, `Novo projeto ${Date.now()}`]);
-    //console.log(projects)
+    const response = await api.post('projects', {
+      title: `Novo projeto ${Date.now()}`,
+      owner: "Carlos Fernandes"
+    });
+
+    const project = response.data;
+
+    setProjects([...projects, project]);
+
   }
   return (
     <>
